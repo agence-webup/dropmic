@@ -1,19 +1,19 @@
 "use strict";
 
-const gulp = require('gulp');
-const browserSync = require('browser-sync');
-const autoprefixer = require('gulp-autoprefixer');
-const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify');
-const babel = require('gulp-babel');
+import gulp from 'gulp';
+import browserSync from 'browser-sync';
+import autoprefixer from 'gulp-autoprefixer';
+import cleanCSS from 'gulp-clean-css';
+import uglify from 'gulp-uglify';
+import babel from 'gulp-babel';
 
 
-var reload = browserSync.reload;
+const reload = browserSync.reload;
 
 /* config
 ---------------------------------------------------- */
 
-gulp.task('css', function() {
+gulp.task('css', () => {
     return gulp.src('src/*.css')
         .pipe(autoprefixer({
             browsers: ['> 1%', 'last 3 versions'],
@@ -38,7 +38,7 @@ gulp.task('js', () => {
 /**
  * Watch files for changes
  */
-gulp.task('watch', function() {
+gulp.task('watch', () => {
     gulp.watch('src/*.css', ['css']);
     gulp.watch('src/*.js', ['js']);
 });
