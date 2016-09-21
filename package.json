@@ -1,0 +1,32 @@
+{
+  "name": "dropdown",
+  "version": "0.1.0",
+  "description": "A lightweight dropdown plugin",
+  "main": "dist/dropdown.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "browser-sync": "^2.16.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agence-webup/dropdown.git"
+  },
+  "keywords": [
+    "dropdown"
+  ],
+  "author": "Agence Webup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agence-webup/dropdown/issues"
+  },
+  "homepage": "https://github.com/agence-webup/dropdown#readme"
+}
