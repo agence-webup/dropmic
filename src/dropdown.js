@@ -12,9 +12,21 @@ class Dropdown {
     }
 
     _bindEvents() {
-        let that = this;
+        let self = this;
+        // Show menu
         this.target.addEventListener("click", function() {
-            that._setContent(that.target);
+            if(!self.target.lastElementChild.classList.contains("dd-menu")) {
+                self._setContent(self.target);
+            }
+        });
+        // Remove menu
+        document.addEventListener("click", function(event) {
+            if (!(event.target.parentNode === self.target)) {
+                if(self.target.lastElementChild.classList.contains("dd-menu")) {
+                    self._removeContent(self.target);
+                }
+            }
+
         });
     }
 

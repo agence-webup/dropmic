@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -17,20 +17,31 @@ var Dropdown = function () {
     }
 
     _createClass(Dropdown, [{
-        key: 'init',
+        key: "init",
         value: function init() {
             this._bindEvents();
         }
     }, {
-        key: '_bindEvents',
+        key: "_bindEvents",
         value: function _bindEvents() {
-            var that = this;
+            var self = this;
+            // Show menu
             this.target.addEventListener("click", function () {
-                that._setContent(that.target);
+                if (!self.target.lastElementChild.classList.contains("dd-menu")) {
+                    self._setContent(self.target);
+                }
+            });
+            // Remove menu
+            document.addEventListener("click", function (event) {
+                if (!(event.target.parentNode === self.target)) {
+                    if (self.target.lastElementChild.classList.contains("dd-menu")) {
+                        self._removeContent(self.target);
+                    }
+                }
             });
         }
     }, {
-        key: '_getCustom',
+        key: "_getCustom",
         value: function _getCustom(options) {
             for (var key in options) {
                 if (options.hasOwnProperty(key) && key === '_addCustom') {
@@ -41,7 +52,7 @@ var Dropdown = function () {
             return '';
         }
     }, {
-        key: '_getListItem',
+        key: "_getListItem",
         value: function _getListItem(content) {
             var listItem = document.createElement("li");
             listItem.classList.add("dd-menu__listItem");
@@ -49,7 +60,7 @@ var Dropdown = function () {
             return listItem;
         }
     }, {
-        key: '_getList',
+        key: "_getList",
         value: function _getList(options) {
             var list = void 0;
             if (_typeof(this.options) === 'object') {
@@ -77,7 +88,7 @@ var Dropdown = function () {
             return list;
         }
     }, {
-        key: '_addLink',
+        key: "_addLink",
         value: function _addLink(label, link) {
             if (typeof label === 'string' && typeof link === 'string') {
                 var content = document.createElement("a");
@@ -90,7 +101,7 @@ var Dropdown = function () {
             }
         }
     }, {
-        key: '_addBtn',
+        key: "_addBtn",
         value: function _addBtn(label, callback) {
             if (typeof label === 'string' && typeof callback === 'function') {
                 var content = document.createElement("button");
@@ -102,7 +113,7 @@ var Dropdown = function () {
             }
         }
     }, {
-        key: '_addLabel',
+        key: "_addLabel",
         value: function _addLabel(label) {
             if (typeof label === 'string') {
                 var content = document.createElement("span");
@@ -114,7 +125,7 @@ var Dropdown = function () {
             }
         }
     }, {
-        key: '_addCustom',
+        key: "_addCustom",
         value: function _addCustom(content) {
             if (typeof content === 'string') {
                 var customContent = document.createElement("div");
@@ -126,7 +137,7 @@ var Dropdown = function () {
             }
         }
     }, {
-        key: '_getContent',
+        key: "_getContent",
         value: function _getContent() {
             var menu = document.createElement("div");
             menu.classList.add("dd-menu");
@@ -145,12 +156,12 @@ var Dropdown = function () {
             return menu;
         }
     }, {
-        key: '_setContent',
+        key: "_setContent",
         value: function _setContent(item) {
             item.appendChild(this._getContent());
         }
     }, {
-        key: '_removeContent',
+        key: "_removeContent",
         value: function _removeContent(item) {
             var lastItem = item.lastElementChild;
             item.removeChild(lastItem);
