@@ -1,4 +1,4 @@
-class Dropdown {
+class Dropmic {
 
     constructor(target, options) {
         this.target = target;
@@ -15,14 +15,14 @@ class Dropdown {
         let self = this;
         // Show menu
         this.target.addEventListener("click", function() {
-            if(!self.target.lastElementChild.classList.contains("dd-menu")) {
+            if(!self.target.lastElementChild.classList.contains("dropmic-menu")) {
                 self._setContent(self.target);
             }
         });
         // Remove menu
         document.addEventListener("click", function(event) {
             if (!(event.target.parentNode === self.target)) {
-                if(self.target.lastElementChild.classList.contains("dd-menu")) {
+                if(self.target.lastElementChild.classList.contains("dropmic-menu")) {
                     self._removeContent(self.target);
                 }
             }
@@ -42,7 +42,7 @@ class Dropdown {
 
     _getListItem(content) {
         let listItem = document.createElement("li");
-        listItem.classList.add("dd-menu__listItem");
+        listItem.classList.add("dropmic-menu__listItem");
         listItem.appendChild(content);
         return listItem;
     }
@@ -51,7 +51,7 @@ class Dropdown {
         let list;
         if (typeof this.options === 'object') {
             list = document.createElement("ul");
-            list.classList.add("dd-menu__list");
+            list.classList.add("dropmic-menu__list");
             for(let key in this.options) {
                 if (this.options.hasOwnProperty(key)) {
                     switch (key) {
@@ -77,7 +77,7 @@ class Dropdown {
     _addLink(label, link) {
         if (typeof label === 'string' && typeof link === 'string') {
             let content = document.createElement("a");
-            content.classList.add("dd-menu__listContent");
+            content.classList.add("dropmic-menu__listContent");
             content.setAttribute("href", link);
             content.innerHTML = label;
             return content;
@@ -89,7 +89,7 @@ class Dropdown {
     _addBtn(label, callback) {
         if (typeof label === 'string' && typeof callback === 'function') {
             let content = document.createElement("button");
-            content.classList.add("dd-menu__listContent");
+            content.classList.add("dropmic-menu__listContent");
             content.innerHTML = label;
             return content;
         } else {
@@ -100,7 +100,7 @@ class Dropdown {
     _addLabel(label) {
         if (typeof label === 'string') {
             let content = document.createElement("span");
-            content.classList.add("dd-menu__listContent");
+            content.classList.add("dropmic-menu__listContent");
             content.innerHTML = label;
             return content;
         } else {
@@ -111,7 +111,7 @@ class Dropdown {
     _addCustom(content) {
         if (typeof content === 'string') {
             let customContent = document.createElement("div");
-            customContent.classList.add("dd-menu__custom");
+            customContent.classList.add("dropmic-menu__custom");
             customContent.innerHTML = content;
             return customContent;
         } else {
@@ -121,9 +121,9 @@ class Dropdown {
 
     _getContent() {
         let menu = document.createElement("div");
-        menu.classList.add("dd-menu");
+        menu.classList.add("dropmic-menu");
         let menuWrapper = document.createElement("div");
-        menuWrapper.classList.add("dd-menu__content");
+        menuWrapper.classList.add("dropmic-menu__content");
 
         menu.appendChild(menuWrapper);
         if (typeof this._getCustom(this.options) === "object") {
@@ -148,7 +148,7 @@ class Dropdown {
 
 }
 
-let plop = new Dropdown(document.querySelector('[data-dropdown]'), {
+let plop = new Dropmic(document.querySelector('[data-dropmic]'), {
     '_addLink': {
         label : 'mon lien',
         link : 'http://okokfsfd'

@@ -1,8 +1,8 @@
 {
-  "name": "dropdown",
+  "name": "dropmic",
   "version": "0.1.0",
   "description": "A lightweight dropdown plugin",
-  "main": "dist/dropdown.js",
+  "main": "dist/dropmic.js",
   "dependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "^6.14.0",
@@ -18,15 +18,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agence-webup/dropdown.git"
+    "url": "git+https://github.com/agence-webup/dropmic.git"
   },
   "keywords": [
-    "dropdown"
+    "dropdown",
+    "dropmic"
   ],
   "author": "Agence Webup",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/agence-webup/dropdown/issues"
+    "url": "https://github.com/agence-webup/dropmic/issues"
   },
-  "homepage": "https://github.com/agence-webup/dropdown#readme"
+  "homepage": "https://github.com/agence-webup/dropmic#readme"
 }

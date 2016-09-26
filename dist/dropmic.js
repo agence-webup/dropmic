@@ -6,9 +6,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Dropdown = function () {
-    function Dropdown(target, options) {
-        _classCallCheck(this, Dropdown);
+var Dropmic = function () {
+    function Dropmic(target, options) {
+        _classCallCheck(this, Dropmic);
 
         this.target = target;
         this.options = options;
@@ -16,7 +16,7 @@ var Dropdown = function () {
         this.init();
     }
 
-    _createClass(Dropdown, [{
+    _createClass(Dropmic, [{
         key: "init",
         value: function init() {
             this._bindEvents();
@@ -27,14 +27,14 @@ var Dropdown = function () {
             var self = this;
             // Show menu
             this.target.addEventListener("click", function () {
-                if (!self.target.lastElementChild.classList.contains("dd-menu")) {
+                if (!self.target.lastElementChild.classList.contains("dropmic-menu")) {
                     self._setContent(self.target);
                 }
             });
             // Remove menu
             document.addEventListener("click", function (event) {
                 if (!(event.target.parentNode === self.target)) {
-                    if (self.target.lastElementChild.classList.contains("dd-menu")) {
+                    if (self.target.lastElementChild.classList.contains("dropmic-menu")) {
                         self._removeContent(self.target);
                     }
                 }
@@ -55,7 +55,7 @@ var Dropdown = function () {
         key: "_getListItem",
         value: function _getListItem(content) {
             var listItem = document.createElement("li");
-            listItem.classList.add("dd-menu__listItem");
+            listItem.classList.add("dropmic-menu__listItem");
             listItem.appendChild(content);
             return listItem;
         }
@@ -65,7 +65,7 @@ var Dropdown = function () {
             var list = void 0;
             if (_typeof(this.options) === 'object') {
                 list = document.createElement("ul");
-                list.classList.add("dd-menu__list");
+                list.classList.add("dropmic-menu__list");
                 for (var key in this.options) {
                     if (this.options.hasOwnProperty(key)) {
                         switch (key) {
@@ -92,7 +92,7 @@ var Dropdown = function () {
         value: function _addLink(label, link) {
             if (typeof label === 'string' && typeof link === 'string') {
                 var content = document.createElement("a");
-                content.classList.add("dd-menu__listContent");
+                content.classList.add("dropmic-menu__listContent");
                 content.setAttribute("href", link);
                 content.innerHTML = label;
                 return content;
@@ -105,7 +105,7 @@ var Dropdown = function () {
         value: function _addBtn(label, callback) {
             if (typeof label === 'string' && typeof callback === 'function') {
                 var content = document.createElement("button");
-                content.classList.add("dd-menu__listContent");
+                content.classList.add("dropmic-menu__listContent");
                 content.innerHTML = label;
                 return content;
             } else {
@@ -117,7 +117,7 @@ var Dropdown = function () {
         value: function _addLabel(label) {
             if (typeof label === 'string') {
                 var content = document.createElement("span");
-                content.classList.add("dd-menu__listContent");
+                content.classList.add("dropmic-menu__listContent");
                 content.innerHTML = label;
                 return content;
             } else {
@@ -129,7 +129,7 @@ var Dropdown = function () {
         value: function _addCustom(content) {
             if (typeof content === 'string') {
                 var customContent = document.createElement("div");
-                customContent.classList.add("dd-menu__custom");
+                customContent.classList.add("dropmic-menu__custom");
                 customContent.innerHTML = content;
                 return customContent;
             } else {
@@ -140,9 +140,9 @@ var Dropdown = function () {
         key: "_getContent",
         value: function _getContent() {
             var menu = document.createElement("div");
-            menu.classList.add("dd-menu");
+            menu.classList.add("dropmic-menu");
             var menuWrapper = document.createElement("div");
-            menuWrapper.classList.add("dd-menu__content");
+            menuWrapper.classList.add("dropmic-menu__content");
 
             menu.appendChild(menuWrapper);
             if (_typeof(this._getCustom(this.options)) === "object") {
@@ -168,10 +168,10 @@ var Dropdown = function () {
         }
     }]);
 
-    return Dropdown;
+    return Dropmic;
 }();
 
-var plop = new Dropdown(document.querySelector('[data-dropdown]'), {
+var plop = new Dropmic(document.querySelector('[data-dropmic]'), {
     '_addLink': {
         label: 'mon lien',
         link: 'http://okokfsfd'
