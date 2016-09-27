@@ -7,20 +7,43 @@
 </head>
 <body>
 
-    <span class="dropmic" data-dropmic="bottom-right">
-        <button>click me</button>
+    <span class="dropmic" data-dropmic="1" data-dropmic-direction="bottom-right">
+        <button data-dropmic-btn>click me</button>
     </span>
 
 
-    <span class="dropmic" data-dropmic="bottom-left" style="position: absolute; right: 10px;">
-        <button>click me</button>
+    <span class="dropmic" data-dropmic="2" data-dropmic-direction="bottom-left" style="position: absolute; right: 10px;">
+        <button data-dropmic-btn>click me</button>
     </span>
 
-    <span class="dropmic" data-dropmic="top-left" style="position: absolute; right: 50%; bottom: 10px;">
-        <button>click me</button>
+    <span class="dropmic" data-dropmic="3"  data-dropmic-direction="top-left" style="position: absolute; right: 50%; bottom: 10px;">
+        <button data-dropmic-btn>click me</button>
     </span>
 
     <script src="../dist/dropmic.js"></script>
+    <script>
+    var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'));
+    dropmic.setCustom("toto custom");
+    dropmic.addLink('label link', 'http://example.com');
+    dropmic.addBtn('fermer le drodpwon', function() {
+        dropmic.close();
+    });
+
+
+    var dropmic2 = new Dropmic(document.querySelector('[data-dropmic="2"]'));
+    dropmic2.setCustom("toto custom");
+    dropmic2.addLink('link 1', 'http://example.com');
+    dropmic2.addLink('link 2', 'http://example.com');
+
+    var dropmic3 = new Dropmic(document.querySelector('[data-dropmic="3"]'));
+    dropmic3.setCustom("toto custom");
+    dropmic3.addLink('link 1', 'http://example.com');
+    dropmic3.addLink('link 2', 'http://example.com');
+
+
+
+
+    </script>
 
 </body>
 </html>

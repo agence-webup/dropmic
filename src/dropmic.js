@@ -1,168 +1,147 @@
+const dropmicClassShow = "dropmic--show";
 class Dropmic {
 
     constructor(target, options) {
         this.target = target;
+        this.btn = target.querySelector('[data-dropmic-btn]');
+
         this.options = options;
+        this.list = null;
+        this.custom = null;
+
+        this.container = null;
 
         this.init();
     }
 
     init() {
+        this._constructDropdown();
         this._bindEvents();
+    }
+
+    _findAncestor(el, cls) {
+        while ((el = el.parentElement) && !el.classList.contains(cls));
+        return el;
     }
 
     _bindEvents() {
         let self = this;
         // Show menu
-        this.target.addEventListener("click", function() {
-            if(!self.target.lastElementChild.classList.contains("dropmic-menu")) {
-                self._setContent(self.target);
+        this.btn.addEventListener("click", function(event) {
+            if (!self.target.classList.contains(dropmicClassShow)) {
+                self.open();
+            } else {
+                self.close();
             }
         });
+
         // Remove menu
         document.addEventListener("click", function(event) {
-            if (!(event.target.parentNode === self.target)) {
-                if(self.target.lastElementChild.classList.contains("dropmic-menu")) {
-                    self._removeContent(self.target);
+            if (!(self._findAncestor(event.target, 'dropmic') === self.target)) {
+                if (self.target.classList.contains(dropmicClassShow)) {
+                    self.close.call(self);
                 }
             }
-
         });
     }
 
-    _getCustom(options) {
-        for (let key in options) {
-            if (options.hasOwnProperty(key) && key === '_addCustom') {
-                let content = this._addCustom(this.options[key].content);
-                return content;
-            }
+    /**
+     * Constructors
+     */
+
+    // Construct list if it doesn't exist
+    _constructList() {
+        if (this.list === null) {
+            this.list = document.createElement("ul");
+            this.list.classList.add("dropmic-menu__list");
+            this.container.appendChild(this.list);
+
         }
-        return '';
+        return this.list;
     }
 
-    _getListItem(content) {
+    // Construct a list item
+    _constructItem(content) {
         let listItem = document.createElement("li");
         listItem.classList.add("dropmic-menu__listItem");
         listItem.appendChild(content);
         return listItem;
     }
 
-    _getList(options) {
-        let list;
-        if (typeof this.options === 'object') {
-            list = document.createElement("ul");
-            list.classList.add("dropmic-menu__list");
-            for(let key in this.options) {
-                if (this.options.hasOwnProperty(key)) {
-                    switch (key) {
-                        case '_addLink':
-                            list.appendChild(this._getListItem(this._addLink(this.options[key].label, this.options[key].link)));
-                            break;
-                        case '_addBtn':
-                            list.appendChild(this._getListItem(this._addBtn(this.options[key].label, this.options[key].callback)));
-                            break;
-                        case '_addLabel':
-                            list.appendChild(this._getListItem(this._addLabel(this.options[key].label)));
-                            break;
-                        default:
-                    }
-                }
-            }
+    // Construct custom content
+    _constructCustom(content) {
+        if (this.custom === null) {
+            this.custom = document.createElement("div");
+            this.custom.classList.add("dropmic-menu__custom");
+            this.custom.innerHTML = content;
+            this.container.appendChild(this.custom);
         } else {
-            console.error('options type error');
-        }
-        return list;
-    }
-
-    _addLink(label, link) {
-        if (typeof label === 'string' && typeof link === 'string') {
-            let content = document.createElement("a");
-            content.classList.add("dropmic-menu__listContent");
-            content.setAttribute("href", link);
-            content.innerHTML = label;
-            return content;
-        } else {
-            console.error('_addLink type error');
+            this.custom.innerHTML = content;
         }
     }
 
-    _addBtn(label, callback) {
-        if (typeof label === 'string' && typeof callback === 'function') {
-            let content = document.createElement("button");
-            content.classList.add("dropmic-menu__listContent");
-            content.innerHTML = label;
-            return content;
-        } else {
-            console.error('_addBtn type error');
+    /**
+     * Public methodes to generate menu
+     */
+
+    // Add a link
+    addLink(label, url) {
+        let link = document.createElement("a");
+        link.classList.add("dropmic-menu__listContent");
+        link.setAttribute("href", url);
+        link.innerHTML = label;
+        this._constructList().appendChild(this._constructItem(link));
+    }
+
+    // Add a button
+    addBtn(label, callback) {
+        if (!(typeof callback === "function")) {
+            console.warning('callback is not a function');
+            return;
         }
+
+        let btn = document.createElement("button");
+        btn.classList.add("dropmic-menu__listContent");
+        btn.innerHTML = label;
+        this._constructList().appendChild(this._constructItem(btn));
+        btn.addEventListener('click', function() {
+            callback();
+        });
+        return btn;
     }
 
-    _addLabel(label) {
-        if (typeof label === 'string') {
-            let content = document.createElement("span");
-            content.classList.add("dropmic-menu__listContent");
-            content.innerHTML = label;
-            return content;
-        } else {
-            console.error('_addLabel type error');
-        }
+    // Add only a text in a span
+    addLabel(text) {
+        let label = document.createElement("span");
+        label.classList.add("dropmic-menu__listContent");
+        label.innerHTML = text;
+        this._constructList().appendChild(this._constructItem(label));
     }
 
-    _addCustom(content) {
-        if (typeof content === 'string') {
-            let customContent = document.createElement("div");
-            customContent.classList.add("dropmic-menu__custom");
-            customContent.innerHTML = content;
-            return customContent;
-        } else {
-            console.error('_addCustom type error');
-        }
+    // Add custom content (not in list), just have fun
+    setCustom(content) {
+        this._constructCustom(content);
     }
 
-    _getContent() {
-        let menu = document.createElement("div");
-        menu.classList.add("dropmic-menu");
-        let menuWrapper = document.createElement("div");
-        menuWrapper.classList.add("dropmic-menu__content");
+    /**
+     * Content factory
+     */
 
-        menu.appendChild(menuWrapper);
-        if (typeof this._getCustom(this.options) === "object") {
-            menuWrapper.appendChild(this._getCustom(this.options));
-        } else {}
-
-        if (typeof this._getList(this.options) === "object") {
-            menuWrapper.appendChild(this._getList(this.options));
-        } else {}
-
-        return menu;
+    _constructDropdown() {
+        this.container = document.createElement("div");
+        this.container.classList.add("dropmic-menu");
+        this.target.appendChild(this.container);
     }
 
-    _setContent(item) {
-        item.appendChild(this._getContent());
+    /**
+     * Dropdown state
+     */
+
+    open() {
+        this.target.classList.add(dropmicClassShow);
     }
 
-    _removeContent(item) {
-        let lastItem = item.lastElementChild;
-        item.removeChild(lastItem);
+    close() {
+        this.target.classList.remove(dropmicClassShow);
     }
-
 }
-
-let plop = new Dropmic(document.querySelector('[data-dropmic]'), {
-    '_addLink': {
-        label : 'mon lien',
-        link : 'http://okokfsfd'
-    },
-    '_addBtn': {
-        label : 'mon bouton',
-        callback : function() {
-            console.log("fonction");
-        }
-    },
-    '_addLabel': {
-        label : 'mon label'
-    },
-    '_addCustom': {
-        content : 'super contenu custom'
-    }
-});
