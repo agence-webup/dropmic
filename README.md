@@ -80,18 +80,18 @@ You can create the content by yourself or use the API.
   ```
   - You can use the API to generate content and open or close your dropdown with JS :
 
-  Name                    | Parametter type(s)      | Description
-  ----------------------- | ----------------------- | ----------
-  addLink(label, url)     | string or int, string   | Add a link
-  addBtn(label, callback) | string or int, function | Add a button
-  addLabel(label)         | string or int           | Add a text label
-  setCustom(content)      | string                  | Set a custom content
-  open()                  |                         | Open your dropdown
-  close()                 |                         | Close your dropdown
+  Name                      | Parametter type(s)      | Description
+  ------------------------- | ----------------------- | ----------
+  addLink(label, url)       | string or int, string   | Add a link
+  addBtn(label, callback)   | string or int, function | Add a button
+  addLabel(label)           | string or int           | Add a text label
+  setCustomContent(content) | string                  | Set a custom content
+  open()                    |                         | Open your dropdown
+  close()                   |                         | Close your dropdown
 
   Example:
   ```
-dropmic.setCustom("toto custom");
+dropmic.setCustomContent("toto custom");
 dropmic.addLink('link label', 'http://example.com');
 dropmic.addBtn('close dropdown', function() {
     dropmic.close();

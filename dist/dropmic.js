@@ -174,8 +174,8 @@ var Dropmic = function () {
         // Add custom content (not in list), just have fun
 
     }, {
-        key: "setCustom",
-        value: function setCustom(content) {
+        key: "setCustomContent",
+        value: function setCustomContent(content) {
             this._isInitialized();
             this._constructCustom(content);
         }

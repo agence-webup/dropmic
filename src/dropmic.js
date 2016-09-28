@@ -136,7 +136,7 @@ class Dropmic {
     }
 
     // Add custom content (not in list), just have fun
-    setCustom(content) {
+    setCustomContent(content) {
         this._isInitialized();
         this._constructCustom(content);
     }
