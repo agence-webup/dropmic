@@ -4,12 +4,11 @@ class Dropmic {
     constructor(target, options) {
         this.target = target;
         this.btn = target.querySelector('[data-dropmic-btn]');
+        this.container = null;
 
         this.options = options;
         this.list = null;
         this.custom = null;
-
-        this.container = null;
 
         this.init();
     }
@@ -49,13 +48,19 @@ class Dropmic {
      * Constructors
      */
 
+    // Construct dropdown struture
+    _constructDropdown() {
+        this.container = document.createElement("div");
+        this.container.classList.add("dropmic-menu");
+        this.target.appendChild(this.container);
+    }
+
     // Construct list if it doesn't exist
     _constructList() {
         if (this.list === null) {
             this.list = document.createElement("ul");
             this.list.classList.add("dropmic-menu__list");
             this.container.appendChild(this.list);
-
         }
         return this.list;
     }
@@ -123,24 +128,12 @@ class Dropmic {
         this._constructCustom(content);
     }
 
-    /**
-     * Content factory
-     */
-
-    _constructDropdown() {
-        this.container = document.createElement("div");
-        this.container.classList.add("dropmic-menu");
-        this.target.appendChild(this.container);
-    }
-
-    /**
-     * Dropdown state
-     */
-
+    // Open dropdown
     open() {
         this.target.classList.add(dropmicClassShow);
     }
 
+    // Close dropdown
     close() {
         this.target.classList.remove(dropmicClassShow);
     }

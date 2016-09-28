@@ -12,12 +12,11 @@ var Dropmic = function () {
 
         this.target = target;
         this.btn = target.querySelector('[data-dropmic-btn]');
+        this.container = null;
 
         this.options = options;
         this.list = null;
         this.custom = null;
-
-        this.container = null;
 
         this.init();
     }
@@ -60,6 +59,16 @@ var Dropmic = function () {
         /**
          * Constructors
          */
+
+        // Construct dropdown struture
+
+    }, {
+        key: "_constructDropdown",
+        value: function _constructDropdown() {
+            this.container = document.createElement("div");
+            this.container.classList.add("dropmic-menu");
+            this.target.appendChild(this.container);
+        }
 
         // Construct list if it doesn't exist
 
@@ -155,27 +164,16 @@ var Dropmic = function () {
             this._constructCustom(content);
         }
 
-        /**
-         * Content factory
-         */
-
-    }, {
-        key: "_constructDropdown",
-        value: function _constructDropdown() {
-            this.container = document.createElement("div");
-            this.container.classList.add("dropmic-menu");
-            this.target.appendChild(this.container);
-        }
-
-        /**
-         * Dropdown state
-         */
+        // Open dropdown
 
     }, {
         key: "open",
         value: function open() {
             this.target.classList.add(dropmicClassShow);
         }
+
+        // Close dropdown
+
     }, {
         key: "close",
         value: function close() {
