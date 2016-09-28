@@ -1,0 +1,24 @@
+{
+  "name": "dropmic",
+  "description": "A lightweight dropdown plugin",
+  "main": "dist/dropmic.js",
+  "authors": [
+    "Agence Webup"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dropdown",
+    "dropmic"
+  ],
+  "homepage": "https://github.com/agence-webup/dropdown",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
