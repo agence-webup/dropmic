@@ -160,6 +160,11 @@ body{background-color:#f9f9f9}
   border-top: 1px solid #f2f2f2;
 }
 
+.dropmic-menu__list:first-child .dropmic-menu__listContent {
+  border-top: none;
+  border-bottom: 1px solid #f2f2f2;
+}
+
 .dropmic-menu__listContent:hover,
 .dropmic-menu__listContent:active {
   background-color: #f2f2f2;
