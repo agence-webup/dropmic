@@ -10,11 +10,12 @@ class Dropmic {
         this.list = null;
         this.custom = null;
 
+        this.initialized = false;
+
         this.init();
     }
 
     init() {
-        this._constructDropdown();
         this._bindEvents();
     }
 
@@ -47,6 +48,14 @@ class Dropmic {
     /**
      * Constructors
      */
+
+    // Initialize dropdown if you want to generate it with JS
+    _isInitialized() {
+        if (this.initialized === false) {
+            this._constructDropdown();
+            this.initialized = true;
+        }
+    }
 
     // Construct dropdown struture
     _constructDropdown() {
@@ -91,6 +100,7 @@ class Dropmic {
 
     // Add a link
     addLink(label, url) {
+        this._isInitialized();
         let link = document.createElement("a");
         link.classList.add("dropmic-menu__listContent");
         link.setAttribute("href", url);
@@ -100,6 +110,7 @@ class Dropmic {
 
     // Add a button
     addBtn(label, callback) {
+        this._isInitialized();
         if (!(typeof callback === "function")) {
             console.warning('callback is not a function');
             return;
@@ -117,6 +128,7 @@ class Dropmic {
 
     // Add only a text in a span
     addLabel(text) {
+        this._isInitialized();
         let label = document.createElement("span");
         label.classList.add("dropmic-menu__listContent");
         label.innerHTML = text;
@@ -125,6 +137,7 @@ class Dropmic {
 
     // Add custom content (not in list), just have fun
     setCustom(content) {
+        this._isInitialized();
         this._constructCustom(content);
     }
 

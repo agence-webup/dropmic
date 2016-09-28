@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Dropdown plugin</title>
     <link rel="stylesheet" href="../dist/dropmic.css">
 </head>
+
 <body>
 
     <span class="dropmic" data-dropmic="1" data-dropmic-direction="bottom-right">
         <button data-dropmic-btn>click me</button>
+        <div class="dropmic-menu">
+            <div class="dropmic-menu__custom">toto custom</div>
+            <ul class="dropmic-menu__list">
+                <li class="dropmic-menu__listItem">
+                    <a class="dropmic-menu__listContent" href="http://example.com">label link</a>
+                </li>
+                <li class="dropmic-menu__listItem">
+                    <button class="dropmic-menu__listContent">fermer le drodpwon</button>
+                </li>
+            </ul>
+        </div>
     </span>
 
 
@@ -16,35 +29,25 @@
         <button data-dropmic-btn>click me</button>
     </span>
 
-    <span class="dropmic" data-dropmic="3"  data-dropmic-direction="top-left" style="position: absolute; right: 50%; bottom: 10px;">
+    <span class="dropmic" data-dropmic="3" data-dropmic-direction="top-left" style="position: absolute; right: 50%; bottom: 10px;">
         <button data-dropmic-btn>click me</button>
     </span>
 
     <script src="../dist/dropmic.js"></script>
     <script>
-    var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'));
-    dropmic.setCustom("toto custom");
-    dropmic.addLink('label link', 'http://example.com');
-    dropmic.addBtn('fermer le drodpwon', function() {
-        dropmic.close();
-    });
+        var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'));
 
+        var dropmic2 = new Dropmic(document.querySelector('[data-dropmic="2"]'));
+        dropmic2.setCustom("toto custom");
+        dropmic2.addLink('link 1', 'http://example.com');
+        dropmic2.addLink('link 2', 'http://example.com');
 
-    var dropmic2 = new Dropmic(document.querySelector('[data-dropmic="2"]'));
-    dropmic2.setCustom("toto custom");
-    dropmic2.addLink('link 1', 'http://example.com');
-    dropmic2.addLink('link 2', 'http://example.com');
-
-    var dropmic3 = new Dropmic(document.querySelector('[data-dropmic="3"]'));
-    dropmic3.addLink('link 1', 'http://example.com');
-    dropmic3.addLink('link 2', 'http://example.com');
-    dropmic3.setCustom("toto custom");
-
-
-
-
-
+        var dropmic3 = new Dropmic(document.querySelector('[data-dropmic="3"]'));
+        dropmic3.addLink('link 1', 'http://example.com');
+        dropmic3.addLink('link 2', 'http://example.com');
+        dropmic3.setCustom("toto custom");
     </script>
 
 </body>
+
 </html>

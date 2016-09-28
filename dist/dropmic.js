@@ -18,13 +18,14 @@ var Dropmic = function () {
         this.list = null;
         this.custom = null;
 
+        this.initialized = false;
+
         this.init();
     }
 
     _createClass(Dropmic, [{
         key: "init",
         value: function init() {
-            this._constructDropdown();
             this._bindEvents();
         }
     }, {
@@ -59,6 +60,17 @@ var Dropmic = function () {
         /**
          * Constructors
          */
+
+        // Initialize dropdown if you want to generate it with JS
+
+    }, {
+        key: "_isInitialized",
+        value: function _isInitialized() {
+            if (this.initialized === false) {
+                this._constructDropdown();
+                this.initialized = true;
+            }
+        }
 
         // Construct dropdown struture
 
@@ -118,6 +130,7 @@ var Dropmic = function () {
     }, {
         key: "addLink",
         value: function addLink(label, url) {
+            this._isInitialized();
             var link = document.createElement("a");
             link.classList.add("dropmic-menu__listContent");
             link.setAttribute("href", url);
@@ -130,6 +143,7 @@ var Dropmic = function () {
     }, {
         key: "addBtn",
         value: function addBtn(label, callback) {
+            this._isInitialized();
             if (!(typeof callback === "function")) {
                 console.warning('callback is not a function');
                 return;
@@ -150,6 +164,7 @@ var Dropmic = function () {
     }, {
         key: "addLabel",
         value: function addLabel(text) {
+            this._isInitialized();
             var label = document.createElement("span");
             label.classList.add("dropmic-menu__listContent");
             label.innerHTML = text;
@@ -161,6 +176,7 @@ var Dropmic = function () {
     }, {
         key: "setCustom",
         value: function setCustom(content) {
+            this._isInitialized();
             this._constructCustom(content);
         }
 
