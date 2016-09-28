@@ -36,7 +36,7 @@ Finally just link the dropmic's code at the end of your document:
 #### Create de base layout for your button
 1. Add `data-dropmic-btn` attribute to your button
 2. Create a span with a `dropmic` css class
-3. Important : add a `data-dropmic-direction` attribute to the span :
+3. Add a `data-dropmic-direction` attribute to the span (default behavior: `bottom-right`):
 
   - `data-dropmic-direction="top-left"`
   - `data-dropmic-direction="top-right"`
