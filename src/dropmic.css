@@ -5,6 +5,9 @@ body{background-color:#f9f9f9}
 
 .dropmic {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .dropmic * {
