@@ -16,7 +16,7 @@
 Method   | Procedure
 -------- | ---------
 Bower    | bower install dropmic --save
-NPM      | _coming soon_
+NPM      | npm install dropmic --save
 Download | [Download zip](https://github.com/agence-webup/dropmic/archive/master.zip)
 
 Then dropmic have some css you will have to add (feel free to custom it for a better integration in your UI):
