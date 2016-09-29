@@ -151,7 +151,9 @@ body{background-color:#f9f9f9}
 
 /* Content style */
 .dropmic-menu__custom,
-.dropmic-menu__listContent {
+.dropmic-menu__listContent,
+.dropmic-menu__listContent:link,
+.dropmic-menu__listContent:visited {
   display: block;
   width: 100%;
   border: none;
