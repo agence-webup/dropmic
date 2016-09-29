@@ -15,7 +15,7 @@
 
 Method   | Procedure
 -------- | ---------
-Bower    | _coming soon_
+Bower    | bower install dropmic --save
 NPM      | _coming soon_
 Download | [Download zip](https://github.com/agence-webup/dropmic/archive/master.zip)
 
