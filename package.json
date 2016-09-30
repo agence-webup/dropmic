@@ -1,6 +1,6 @@
 {
   "name": "dropmic",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A lightweight dropdown plugin",
   "main": "dist/dropmic.js",
   "dependencies": {},
