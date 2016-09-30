@@ -41,7 +41,7 @@ body{background-color:#f9f9f9}
   right: auto;
   bottom: 0;
   left: calc(50% - 15px);
-  transform: translateY(calc(100% + 20px));
+  transform: translateY(calc(100% + 7px));
 }
 
 [data-dropmic-direction="bottom-left"] .dropmic-menu {
@@ -49,7 +49,7 @@ body{background-color:#f9f9f9}
   right: calc(50% - 10px);
   bottom: 0;
   left: auto;
-  transform: translateY(calc(100% + 20px));
+  transform: translateY(calc(100% + 7px));
 }
 
 [data-dropmic-direction="top-left"] .dropmic-menu {
@@ -57,7 +57,7 @@ body{background-color:#f9f9f9}
   right: calc(50% - 10px);
   bottom: auto;
   left: auto;
-  transform: translateY(calc(-100% - 20px));
+  transform: translateY(calc(-100% - 8px));
 }
 
 [data-dropmic-direction="top-right"] .dropmic-menu {
@@ -65,7 +65,7 @@ body{background-color:#f9f9f9}
   right: auto;
   bottom: auto;
   left: calc(50% - 15px);
-  transform: translateY(calc(-100% - 20px));
+  transform: translateY(calc(-100% - 8px));
 }
 
 /* arrow */
