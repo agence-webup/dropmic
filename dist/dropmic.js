@@ -40,6 +40,7 @@ var Dropmic = function () {
             var self = this;
             // Show menu
             this.btn.addEventListener("click", function (event) {
+                event.preventDefault();
                 if (!self.target.classList.contains(dropmicClassShow)) {
                     self.open();
                 } else {
