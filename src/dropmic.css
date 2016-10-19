@@ -182,14 +182,28 @@ body{background-color:#f9f9f9}
 
 .dropmic-menu__listContent {
   padding: 10px 30px;
+}
+
+/* When list come after custom content */
+
+.dropmic-menu__listContent:nth-child(n) {
   border-top: 1px solid #f2f2f2;
 }
+
+/* When list come first */
 
 .dropmic-menu__list:first-child .dropmic-menu__listContent {
   border-top: none;
   border-bottom: 1px solid #f2f2f2;
 }
 
+/* When the are only list items¨*/
+
+.dropmic-menu__list:only-child .dropmic-menu__listItem:last-child .dropmic-menu__listContent {
+  border-bottom: none;
+}
+
+/* States */
 .dropmic-menu__listContent:hover,
 .dropmic-menu__listContent:active {
   background-color: #f2f2f2;
