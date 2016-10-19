@@ -33,6 +33,10 @@
         <button data-dropmic-btn>click me</button>
     </span>
 
+    <span class="dropmic" data-dropmic="4" data-dropmic-direction="bottom-middle" style="position: absolute; right: 50%; top: 50%; transform: translate(-50% -50%);">
+        <button data-dropmic-btn>click me</button>
+    </span>
+
     <script src="../dist/dropmic.js"></script>
     <script>
         var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'));
@@ -46,6 +50,11 @@
         dropmic3.addLink('link 1', 'http://example.com');
         dropmic3.addLink('link 2', 'http://example.com');
         dropmic3.setCustomContent("toto custom");
+
+        var dropmic4 = new Dropmic(document.querySelector('[data-dropmic="4"]'));
+        dropmic4.addLink('link 1', 'http://example.com');
+        dropmic4.addLink('link 2', 'http://example.com');
+        dropmic4.addLink('link 3', 'http://example.com');
     </script>
 
 </body>

@@ -40,8 +40,10 @@ Finally just link the dropmic's code at the end of your document:
 
   - `data-dropmic-direction="top-left"`
   - `data-dropmic-direction="top-right"`
+  - `data-dropmic-direction="top-middle"`
   - `data-dropmic-direction="bottom-left"`
   - `data-dropmic-direction="bottom-right"`
+  - `data-dropmic-direction="bottom-middle"`
 
 4. You can also add a `data-dropmic` attribute to you span for target it.
 
@@ -101,6 +103,7 @@ dropmic.addLabel('text label');
 
 ## Roadmap
 - [x] Add open and close public method in the API
+- [x] Add top-middle and bottom-middle direction
 - [ ] Instanciate severals dropmic with one initialization command
 - [ ] Permit to update a list item value
 - [ ] Permit to update button content with dropdown is open
