@@ -36,7 +36,7 @@ class Dropmic {
             }
         });
 
-        // Remove menu
+        // Close menu when mouthclick outside menu
         document.addEventListener("click", function(event) {
             if (!(self._findAncestor(event.target, 'dropmic') === self.target)) {
                 if (self.target.classList.contains(dropmicClassShow)) {
@@ -46,9 +46,24 @@ class Dropmic {
         });
 
         // Close menu with escape key
-        document.addEventListener("keydown", function(event) {
+        this.target.addEventListener("keydown", function(event) {
             if(event.key === "Escape") {
                 self.close();
+                self.btn.focus();
+            }
+        });
+
+        // Loop dropdown item with Tab key
+        this.target.addEventListener("keydown", function(event) {
+            if(event.key === "Tab") {
+                if (self.target.classList.contains(dropmicClassShow)) {
+                    let elementList = self.target.querySelectorAll(".dropmic-menu__listContent");
+                    let elementLast = elementList.length - 1;
+                    if(document.activeElement === elementList[elementLast]) {
+                        event.preventDefault();
+                        elementList[0].focus();
+                    }
+                }
             }
         });
     }
