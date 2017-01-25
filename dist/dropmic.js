@@ -80,6 +80,7 @@ var Dropmic = function () {
         value: function _constructDropdown() {
             this.container = document.createElement("div");
             this.container.classList.add("dropmic-menu");
+            this.container.setAttribute("aria-hidden", "true");
             this.target.appendChild(this.container);
         }
 
@@ -91,6 +92,7 @@ var Dropmic = function () {
             if (this.list === null) {
                 this.list = document.createElement("ul");
                 this.list.classList.add("dropmic-menu__list");
+                this.list.setAttribute("role", "menu");
                 this.container.appendChild(this.list);
             }
             return this.list;
@@ -103,6 +105,7 @@ var Dropmic = function () {
         value: function _constructItem(content) {
             var listItem = document.createElement("li");
             listItem.classList.add("dropmic-menu__listItem");
+            this.list.setAttribute("role", "menuitem");
             listItem.appendChild(content);
             return listItem;
         }
@@ -135,6 +138,7 @@ var Dropmic = function () {
             var link = document.createElement("a");
             link.classList.add("dropmic-menu__listContent");
             link.setAttribute("href", url);
+            link.setAttribute("tabindex", "-1");
             link.innerHTML = label;
             this._constructList().appendChild(this._constructItem(link));
         }
@@ -152,6 +156,7 @@ var Dropmic = function () {
 
             var btn = document.createElement("button");
             btn.classList.add("dropmic-menu__listContent");
+            btn.setAttribute("tabindex", "-1");
             btn.innerHTML = label;
             this._constructList().appendChild(this._constructItem(btn));
             btn.addEventListener('click', function () {
@@ -187,6 +192,11 @@ var Dropmic = function () {
         key: "open",
         value: function open() {
             this.target.classList.add(dropmicClassShow);
+            this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "false");
+            var listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
+            [].forEach.call(listItems, function (el) {
+                el.setAttribute("tabindex", "0");
+            });
         }
 
         // Close dropdown
@@ -195,6 +205,11 @@ var Dropmic = function () {
         key: "close",
         value: function close() {
             this.target.classList.remove(dropmicClassShow);
+            this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "true");
+            var listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
+            [].forEach.call(listItems, function (el) {
+                el.setAttribute("tabindex", "-1");
+            });
         }
     }]);
 

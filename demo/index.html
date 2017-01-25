@@ -21,16 +21,16 @@
 
 <body>
 
-    <span class="dropmic" data-dropmic="1">
+    <span class="dropmic" data-dropmic="1" role="navigation">
         <button data-dropmic-btn>Bottom right (default)</button>
-        <div class="dropmic-menu">
+        <div class="dropmic-menu" aria-hidden="true">
             <div class="dropmic-menu__custom">Custom content</div>
-            <ul class="dropmic-menu__list">
-                <li class="dropmic-menu__listItem">
-                    <a class="dropmic-menu__listContent" href="http://example.com">label link</a>
+            <ul class="dropmic-menu__list" role="menu">
+                <li class="dropmic-menu__listItem" role="menuitem">
+                    <a class="dropmic-menu__listContent" tabindex="-1" href="http://example.com">label link</a>
                 </li>
-                <li class="dropmic-menu__listItem">
-                    <button class="dropmic-menu__listContent">button</button>
+                <li class="dropmic-menu__listItem" role="menuitem">
+                    <button class="dropmic-menu__listContent" tabindex="-1">button</button>
                 </li>
             </ul>
         </div>

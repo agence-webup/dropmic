@@ -62,6 +62,7 @@ class Dropmic {
     _constructDropdown() {
         this.container = document.createElement("div");
         this.container.classList.add("dropmic-menu");
+        this.container.setAttribute("aria-hidden", "true");
         this.target.appendChild(this.container);
     }
 
@@ -70,6 +71,7 @@ class Dropmic {
         if (this.list === null) {
             this.list = document.createElement("ul");
             this.list.classList.add("dropmic-menu__list");
+            this.list.setAttribute("role", "menu")
             this.container.appendChild(this.list);
         }
         return this.list;
@@ -79,6 +81,7 @@ class Dropmic {
     _constructItem(content) {
         let listItem = document.createElement("li");
         listItem.classList.add("dropmic-menu__listItem");
+        this.list.setAttribute("role", "menuitem")
         listItem.appendChild(content);
         return listItem;
     }
@@ -105,6 +108,7 @@ class Dropmic {
         let link = document.createElement("a");
         link.classList.add("dropmic-menu__listContent");
         link.setAttribute("href", url);
+        link.setAttribute("tabindex", "-1");
         link.innerHTML = label;
         this._constructList().appendChild(this._constructItem(link));
     }
@@ -119,6 +123,7 @@ class Dropmic {
 
         let btn = document.createElement("button");
         btn.classList.add("dropmic-menu__listContent");
+        btn.setAttribute("tabindex", "-1");
         btn.innerHTML = label;
         this._constructList().appendChild(this._constructItem(btn));
         btn.addEventListener('click', function() {
@@ -145,10 +150,20 @@ class Dropmic {
     // Open dropdown
     open() {
         this.target.classList.add(dropmicClassShow);
+        this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "false");
+        let listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
+        [].forEach.call(listItems, (el) => {
+            el.setAttribute("tabindex", "0");
+        })
     }
 
     // Close dropdown
     close() {
         this.target.classList.remove(dropmicClassShow);
+        this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "true");
+        let listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
+        [].forEach.call(listItems, (el) => {
+            el.setAttribute("tabindex", "-1");
+        })
     }
 }
