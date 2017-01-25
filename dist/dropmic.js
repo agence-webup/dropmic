@@ -56,6 +56,13 @@ var Dropmic = function () {
                     }
                 }
             });
+
+            // Close menu with escape key
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    self.close();
+                }
+            });
         }
 
         /**
