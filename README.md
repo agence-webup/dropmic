@@ -65,16 +65,16 @@ You can create the content by yourself or use the API.
   - Use this template (`<div class="dropmic-menu">` is needed, otherwise you can completely customize the content)
 
   ```
-  <span class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right">
+  <span class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right" role="navigation">
       <button data-dropmic-btn>click me</button>
-      <div class="dropmic-menu">
+      <div class="dropmic-menu" aria-hidden="true">
           <div class="dropmic-menu__custom">Custom content</div>
-          <ul class="dropmic-menu__list">
-              <li class="dropmic-menu__listItem">
-                  <a class="dropmic-menu__listContent" href="http://example.com">label link</a>
+          <ul class="dropmic-menu__list" role="menu">
+              <li class="dropmic-menu__listItem" role="menuitem">
+                  <a class="dropmic-menu__listContent" href="http://example.com" tabindex="-1">label link</a>
               </li>
-              <li class="dropmic-menu__listItem">
-                  <button class="dropmic-menu__listContent">label button</button>
+              <li class="dropmic-menu__listItem" role="menuitem">
+                  <button class="dropmic-menu__listContent" tabindex="-1">label button</button>
               </li>
           </ul>
       </div>
