@@ -5,56 +5,90 @@
     <meta charset="utf-8">
     <title>Dropdown plugin</title>
     <link rel="stylesheet" href="../dist/dropmic.css">
+    <style>
+        body {
+            width: 100vw;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
 
     <span class="dropmic" data-dropmic="1">
-        <button data-dropmic-btn>click me</button>
+        <button data-dropmic-btn>Bottom right (default)</button>
         <div class="dropmic-menu">
-            <div class="dropmic-menu__custom">toto custom</div>
+            <div class="dropmic-menu__custom">Custom content</div>
             <ul class="dropmic-menu__list">
                 <li class="dropmic-menu__listItem">
                     <a class="dropmic-menu__listContent" href="http://example.com">label link</a>
                 </li>
                 <li class="dropmic-menu__listItem">
-                    <button class="dropmic-menu__listContent">fermer le drodpwon</button>
+                    <button class="dropmic-menu__listContent">button</button>
                 </li>
             </ul>
         </div>
     </span>
 
 
-    <span class="dropmic" data-dropmic="2" data-dropmic-direction="bottom-left" style="position: absolute; right: 10px;">
-        <button data-dropmic-btn>click me</button>
+    <span class="dropmic" data-dropmic="2" data-dropmic-direction="bottom-left">
+        <button data-dropmic-btn>Bottom left</button>
     </span>
 
-    <span class="dropmic" data-dropmic="3" data-dropmic-direction="top-right" style="position: absolute; right: 50%; bottom: 10px;">
-        <button data-dropmic-btn>click me</button>
+    <span class="dropmic" data-dropmic="3" data-dropmic-direction="bottom-middle">
+        <button data-dropmic-btn>Bottom middle</button>
     </span>
 
-    <span class="dropmic" data-dropmic="4" data-dropmic-direction="top-middle" style="position: absolute; right: 50%; top: 50%; transform: translate(-50% -50%);">
-        <button data-dropmic-btn>click me</button>
+    <span class="dropmic" data-dropmic="4" data-dropmic-direction="top-middle">
+        <button data-dropmic-btn>Top middle</button>
     </span>
+
+    <span class="dropmic" data-dropmic="5" data-dropmic-direction="top-left">
+        <button data-dropmic-btn>Top left</button>
+    </span>
+
+    <span class="dropmic" data-dropmic="6" data-dropmic-direction="top-right">
+        <button data-dropmic-btn>Top right</button>
+    </span>
+
 
     <script src="../dist/dropmic.js"></script>
     <script>
         var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'));
 
         var dropmic2 = new Dropmic(document.querySelector('[data-dropmic="2"]'));
-        dropmic2.setCustomContent("toto custom");
+        dropmic2.setCustomContent("Custom content");
         dropmic2.addLink('link 1', 'http://example.com');
         dropmic2.addLink('link 2', 'http://example.com');
+        dropmic2.addBtn('close dropdown', function() {
+            dropmic2.close();
+        });
 
         var dropmic3 = new Dropmic(document.querySelector('[data-dropmic="3"]'));
         dropmic3.addLink('link 1', 'http://example.com');
         dropmic3.addLink('link 2', 'http://example.com');
-        dropmic3.setCustomContent("toto custom");
+        dropmic3.setCustomContent("Custom content");
 
         var dropmic4 = new Dropmic(document.querySelector('[data-dropmic="4"]'));
         dropmic4.addLink('link 1', 'http://example.com');
         dropmic4.addLink('link 2', 'http://example.com');
         dropmic4.addLink('link 3', 'http://example.com');
+
+        var dropmic5 = new Dropmic(document.querySelector('[data-dropmic="5"]'));
+        dropmic5.addLink('link 1', 'http://example.com');
+        dropmic5.addLink('link 2', 'http://example.com');
+        dropmic5.addLink('link 3', 'http://example.com');
+
+        var dropmic6 = new Dropmic(document.querySelector('[data-dropmic="6"]'));
+        dropmic6.addLink('link 1', 'http://example.com');
+        dropmic6.addLink('link 2', 'http://example.com');
+        dropmic6.addLink('link 3', 'http://example.com');
     </script>
 
 </body>
