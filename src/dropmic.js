@@ -188,8 +188,8 @@ class Dropmic {
         btn.setAttribute("tabindex", "-1");
         btn.innerHTML = label;
         this._constructList().appendChild(this._constructItem(btn));
-        btn.addEventListener('click', function() {
-            callback();
+        btn.addEventListener('click', function(event) {
+            callback(event);
         });
         return btn;
     }
