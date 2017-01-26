@@ -53,21 +53,61 @@ class Dropmic {
             }
         });
 
-        // Loop dropdown item with Tab key
+
         this.target.addEventListener("keydown", function(event) {
-            if(event.key === "Tab") {
-                if (self.target.classList.contains(dropmicClassShow)) {
-                    let elementList = self.target.querySelectorAll(".dropmic-menu__listContent");
-                    let elementLast = elementList.length - 1;
-                    if(document.activeElement === elementList[elementLast]) {
-                        event.preventDefault();
+            if (self.target.classList.contains(dropmicClassShow)) {
+                // Tab navigation
+                let elementList = self.target.querySelectorAll(".dropmic-menu__listContent");
+                let elementLast = elementList.length - 1;
+                if(event.key === "Tab" && document.activeElement === elementList[elementLast]) {
+                    event.preventDefault();
+                    elementList[0].focus();
+                }
+
+                // Arrow Up/Down navigation
+                if(event.key === "ArrowUp" || event.key === "ArrowDown") {
+                    event.preventDefault();
+                    let currentItemIndex = self._getCurrentItemIndex(elementList, document.activeElement);
+                    if(currentItemIndex === undefined) {
                         elementList[0].focus();
+                    } else {
+                        if(event.key === "ArrowUp") {
+                            elementList[self._getPreviousItemIndex(elementList, currentItemIndex)].focus();
+                        } else {
+                            elementList[self._getNextItemIndex(elementList, currentItemIndex)].focus();
+                        }
                     }
                 }
             }
         });
     }
 
+    // Navigation function
+
+    _getCurrentItemIndex(list, element) {
+        for (var i = 0; i < list.length; i++) {
+            if(element === list[i]) {
+                return i;
+            }
+        }
+        return undefined;
+    }
+
+    _getPreviousItemIndex(list, currentItemIndex) {
+        if(currentItemIndex > 0) {
+            return currentItemIndex - 1;
+        } else {
+            return list.length - 1;
+        }
+    }
+
+    _getNextItemIndex(list, currentItemIndex) {
+        if(currentItemIndex === list.length - 1) {
+            return 0;
+        } else {
+            return currentItemIndex + 1;
+        }
+    }
     /**
      * Constructors
      */

@@ -104,6 +104,7 @@ dropmic.addLabel('text label');
 ## Roadmap
 - [x] Add open and close public method in the API
 - [x] Add top-middle and bottom-middle direction
+- [x] A11y friendly (with keyboard navigation)
 - [ ] Instanciate severals dropmic with one initialization command
 - [ ] Permit to update a list item value
 - [ ] Permit to update button content with dropdown is open
