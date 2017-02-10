@@ -47,7 +47,7 @@ class Dropmic {
 
         // Close menu with escape key
         this.target.addEventListener("keydown", function(event) {
-            if(event.key === "Escape") {
+            if(event.keyCode === 27) {
                 self.close();
                 self.btn.focus();
             }
@@ -59,19 +59,19 @@ class Dropmic {
                 // Tab navigation
                 let elementList = self.target.querySelectorAll(".dropmic-menu__listContent");
                 let elementLast = elementList.length - 1;
-                if(event.key === "Tab" && document.activeElement === elementList[elementLast]) {
+                if(event.keyCode === 9 && document.activeElement === elementList[elementLast]) {
                     event.preventDefault();
                     elementList[0].focus();
                 }
 
                 // Arrow Up/Down navigation
-                if(event.key === "ArrowUp" || event.key === "ArrowDown") {
+                if(event.keyCode === 38 || event.keyCode === 40) {
                     event.preventDefault();
                     let currentItemIndex = self._getCurrentItemIndex(elementList, document.activeElement);
                     if(currentItemIndex === undefined) {
                         elementList[0].focus();
                     } else {
-                        if(event.key === "ArrowUp") {
+                        if(event.keyCode === 38) {
                             elementList[self._getPreviousItemIndex(elementList, currentItemIndex)].focus();
                         } else {
                             elementList[self._getNextItemIndex(elementList, currentItemIndex)].focus();
