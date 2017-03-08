@@ -47,7 +47,7 @@ class Dropmic {
 
         // Close menu with escape key
         this.target.addEventListener("keydown", function(event) {
-            if(event.keyCode === 27) {
+            if (event.keyCode === 27) {
                 self.close();
                 self.btn.focus();
             }
@@ -59,19 +59,19 @@ class Dropmic {
                 // Tab navigation
                 let elementList = self.target.querySelectorAll(".dropmic-menu__listContent");
                 let elementLast = elementList.length - 1;
-                if(event.keyCode === 9 && document.activeElement === elementList[elementLast]) {
+                if (event.keyCode === 9 && document.activeElement === elementList[elementLast]) {
                     event.preventDefault();
                     elementList[0].focus();
                 }
 
                 // Arrow Up/Down navigation
-                if(event.keyCode === 38 || event.keyCode === 40) {
+                if (event.keyCode === 38 || event.keyCode === 40) {
                     event.preventDefault();
                     let currentItemIndex = self._getCurrentItemIndex(elementList, document.activeElement);
-                    if(currentItemIndex === undefined) {
+                    if (currentItemIndex === undefined) {
                         elementList[0].focus();
                     } else {
-                        if(event.keyCode === 38) {
+                        if (event.keyCode === 38) {
                             elementList[self._getPreviousItemIndex(elementList, currentItemIndex)].focus();
                         } else {
                             elementList[self._getNextItemIndex(elementList, currentItemIndex)].focus();
@@ -86,7 +86,7 @@ class Dropmic {
 
     _getCurrentItemIndex(list, element) {
         for (var i = 0; i < list.length; i++) {
-            if(element === list[i]) {
+            if (element === list[i]) {
                 return i;
             }
         }
@@ -94,7 +94,7 @@ class Dropmic {
     }
 
     _getPreviousItemIndex(list, currentItemIndex) {
-        if(currentItemIndex > 0) {
+        if (currentItemIndex > 0) {
             return currentItemIndex - 1;
         } else {
             return list.length - 1;
@@ -102,7 +102,7 @@ class Dropmic {
     }
 
     _getNextItemIndex(list, currentItemIndex) {
-        if(currentItemIndex === list.length - 1) {
+        if (currentItemIndex === list.length - 1) {
             return 0;
         } else {
             return currentItemIndex + 1;
