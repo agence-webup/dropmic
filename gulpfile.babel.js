@@ -5,7 +5,8 @@ import browserSync from 'browser-sync';
 import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
 import uglify from 'gulp-uglify';
-import babel from 'gulp-babel';
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
 
 
 const reload = browserSync.reload;
@@ -28,11 +29,18 @@ gulp.task('css', () => {
 
 
 gulp.task('js', () => {
-    return gulp.src('src/*.js')
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('dist'));
+    return browserify({
+            entries: ['./src/dropmic.js'],
+            standalone: 'Dropmic'
+        })
+        .transform('babelify', {
+            presets: ['es2015'],
+            global: true,
+            ignore: /node_modules/
+        })
+        .bundle()
+        .pipe(source('dropmic.js'))
+        .pipe(gulp.dest('./dist'));
 });
 
 /**

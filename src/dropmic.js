@@ -229,3 +229,5 @@ class Dropmic {
         })
     }
 }
+
+module.exports = Dropmic;
