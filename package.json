@@ -1,17 +1,20 @@
 {
   "name": "dropmic",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A lightweight dropdown plugin",
   "main": "dist/dropmic.js",
   "dependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
     "browser-sync": "^2.16.0",
+    "browserify": "^14.1.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^2.0.12",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
