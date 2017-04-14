@@ -36,8 +36,8 @@ Finally just link the dropmic's code at the end of your document:
 
 #### Create the base layout for your button
 1. Add `data-dropmic-btn` attribute to your button
-2. Create a span with a `dropmic` css class
-3. Add a `data-dropmic-direction` attribute to the span (default behavior: `bottom-right`):
+2. Create a div with a `dropmic` css class
+3. Add a `data-dropmic-direction` attribute to the div (default behavior: `bottom-right`):
 
   - `data-dropmic-direction="top-left"`
   - `data-dropmic-direction="top-right"`
@@ -46,14 +46,14 @@ Finally just link the dropmic's code at the end of your document:
   - `data-dropmic-direction="bottom-right"`
   - `data-dropmic-direction="bottom-middle"`
 
-4. You can also add a `data-dropmic` attribute to you span for target it.
+4. You can also add a `data-dropmic` attribute to you div for target it.
 
 Example:
 ```
-<span class="dropmic" data-dropmic="42"
+<div class="dropmic" data-dropmic="42"
 data-dropmic-direction="bottom-right">
   <button data-dropmic-btn>click me</button>
-</span>
+</div>
 ```
 
 #### Instantiate your new dropdown
@@ -66,7 +66,7 @@ You can create the content by yourself or use the API.
   - Use this template (`<div class="dropmic-menu">` is needed, otherwise you can completely customize the content)
 
   ```
-  <span class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right" role="navigation">
+  <div class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right" role="navigation">
       <button data-dropmic-btn>click me</button>
       <div class="dropmic-menu" aria-hidden="true">
           <div class="dropmic-menu__custom">Custom content</div>
@@ -79,7 +79,7 @@ You can create the content by yourself or use the API.
               </li>
           </ul>
       </div>
-  </span>
+  </div>
   ```
   - You can use the API to generate content and open or close your dropdown with JS :
 
