@@ -33,7 +33,7 @@ Finally just link the dropmic's code at the end of your document:
 
 ### Use
 
-#### Create de base layout for your button
+#### Create the base layout for your button
 1. Add `data-dropmic-btn` attribute to your button
 2. Create a span with a `dropmic` css class
 3. Add a `data-dropmic-direction` attribute to the span (default behavior: `bottom-right`):
@@ -55,7 +55,7 @@ data-dropmic-direction="bottom-right">
 </span>
 ```
 
-#### Instanciate your new dropdown
+#### Instantiate your new dropdown
 ```
 var dropmic = new Dropmic(document.querySelector('[data-dropmic="42"]'));
 ```
@@ -105,7 +105,7 @@ dropmic.addLabel('text label');
 - [x] Add open and close public method in the API
 - [x] Add top-middle and bottom-middle direction
 - [x] A11y friendly (with keyboard navigation)
-- [ ] Instanciate severals dropmic with one initialization command
+- [ ] Instantiate severals dropmic with one initialization command
 - [ ] Permit to update a list item value
 - [ ] Permit to update button content with dropdown is open
 
