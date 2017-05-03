@@ -201,6 +201,7 @@
   display: block;
   width: 100%;
   border: none;
+  border-radius: 0;
   background: none;
   color: #373737;
   text-align: left;
