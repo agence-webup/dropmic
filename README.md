@@ -93,6 +93,7 @@ You can use the API to generate content and open or close your dropdown with JS:
   addBtn(label, callback)   | string or int, function | Add a button
   addLabel(label)           | string or int           | Add a text label
   setCustomContent(content) | string                  | Set a custom content
+  updateTargetBtn(content)  | string                  | Update target button content
   open()                    |                         | Open your dropdown
   close()                   |                         | Close your dropdown
 
@@ -119,9 +120,9 @@ dropmic.addLabel('text label');
 - [x] Add open and close public method in the API
 - [x] Add top-middle and bottom-middle direction
 - [x] A11y friendly (with keyboard navigation)
+- [x] Permit to update button content with dropdown is open
 - [ ] Instantiate severals dropmic with one initialization command
 - [ ] Permit to update a list item value
-- [ ] Permit to update button content with dropdown is open
 
 ## Licence
 Released under the [MIT LICENSE](http://opensource.org/licenses/MIT)
