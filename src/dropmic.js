@@ -261,6 +261,12 @@ class Dropmic {
         this._constructCustom(content);
     }
 
+    // Update target button content
+
+    updateTargetBtn(content) {
+        this.btn.innerHTML = content;
+    }
+
     // Open dropdown
     open() {
         this._beforeOpen();

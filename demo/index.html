@@ -63,9 +63,11 @@
         var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'), {
             onOpen: function() {
                 console.log("is open");
+                dropmic.updateTargetBtn("Click to close");
             },
             onClose: function() {
                 console.log("is now closed");
+                dropmic.updateTargetBtn("Bottom right (default)");
             }
         });
 
