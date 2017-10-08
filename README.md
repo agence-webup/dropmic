@@ -22,13 +22,13 @@ Download                   | [Download zip](https://github.com/agence-webup/drop
 
 Then dropmic have some css you will have to add (feel free to custom it for a better integration in your UI):
 
-```
+```html
 <link rel="stylesheet" href="dist/dropmic.css">
 ```
 
 Finally just link the dropmic's code at the end of your document:
 
-```
+```html
 <script src="dist/dropmic.js"></script>
 ```
 
@@ -49,7 +49,7 @@ Finally just link the dropmic's code at the end of your document:
 4. You can also add a `data-dropmic` attribute to you div for target it.
 
 Example:
-```
+```html
 <div class="dropmic" data-dropmic="42"
 data-dropmic-direction="bottom-right">
   <button data-dropmic-btn>click me</button>
@@ -57,7 +57,7 @@ data-dropmic-direction="bottom-right">
 ```
 
 #### Instantiate your new dropdown
-```
+```javascript
 var dropmic = new Dropmic(document.querySelector('[data-dropmic="42"]'));
 ```
 
@@ -66,7 +66,7 @@ var dropmic = new Dropmic(document.querySelector('[data-dropmic="42"]'));
 
   Use this template (`<div class="dropmic-menu">` is needed, otherwise you can completely customize his content)
 
-  ```
+  ```html
   <div class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right" role="navigation">
       <button data-dropmic-btn>click me</button>
       <div class="dropmic-menu" aria-hidden="true">
@@ -98,7 +98,7 @@ You can use the API to generate content and open or close your dropdown with JS:
   close()                   |                         | Close your dropdown
 
   Example:
-  ```
+  ```javascript
 dropmic.setCustomContent("toto custom");
 dropmic.addLink('link label', 'http://example.com');
 dropmic.addBtn('close dropdown', function() {
@@ -118,7 +118,7 @@ dropmic.addLabel('text label');
 
 
   Example:
-  ```
+  ```javascript
 var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'), {
     onOpen: function() {
         dropmic.updateTargetBtn("Click to close");
