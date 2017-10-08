@@ -3,6 +3,8 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var dropmicClassShow = "dropmic--show";
@@ -15,7 +17,14 @@ var Dropmic = function () {
         this.btn = target.querySelector('[data-dropmic-btn]');
         this.container = null;
 
-        this.options = options;
+        this.defaults = _defineProperty({
+            onOpen: null,
+            onClose: null,
+            beforeClose: null
+        }, "beforeClose", null);
+
+        this.options = this.extendObject({}, this.defaults, options);
+
         this.list = null;
         this.custom = null;
 
@@ -125,8 +134,8 @@ var Dropmic = function () {
             }
         }
         /**
-         * Constructors
-         */
+        * Constructors
+        */
 
         // Initialize dropdown if you want to generate it with JS
 
@@ -192,8 +201,58 @@ var Dropmic = function () {
         }
 
         /**
-         * Public methodes to generate menu
-         */
+        * Callback methods
+        */
+
+    }, {
+        key: "_onOpen",
+        value: function _onOpen() {
+            if (this.options.onOpen) {
+                this.options.onOpen();
+            }
+        }
+    }, {
+        key: "_onClose",
+        value: function _onClose() {
+            if (this.options.onClose) {
+                this.options.onClose();
+            }
+        }
+    }, {
+        key: "_beforeOpen",
+        value: function _beforeOpen() {
+            if (this.options.beforeOpen) {
+                this.options.beforeOpen();
+            }
+        }
+    }, {
+        key: "_beforeClose",
+        value: function _beforeClose() {
+            if (this.options.beforeClose) {
+                this.options.beforeClose();
+            }
+        }
+
+        /**
+        * Helpers
+        */
+
+    }, {
+        key: "extendObject",
+        value: function extendObject() {
+            for (var i = 1; i < arguments.length; i++) {
+                for (var key in arguments[i]) {
+                    if (arguments[i].hasOwnProperty(key)) {
+                        arguments[0][key] = arguments[i][key];
+                    }
+                }
+            }
+            return arguments[0];
+        }
+
+        /**
+        * Public methods to generate menu
+        */
 
         // Add a link
 
@@ -257,12 +316,14 @@ var Dropmic = function () {
     }, {
         key: "open",
         value: function open() {
+            this._beforeOpen();
             this.target.classList.add(dropmicClassShow);
             this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "false");
             var listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
             [].forEach.call(listItems, function (el) {
                 el.setAttribute("tabindex", "0");
             });
+            this._onOpen();
         }
 
         // Close dropdown
@@ -270,12 +331,14 @@ var Dropmic = function () {
     }, {
         key: "close",
         value: function close() {
+            this._beforeClose();
             this.target.classList.remove(dropmicClassShow);
             this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "true");
             var listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
             [].forEach.call(listItems, function (el) {
                 el.setAttribute("tabindex", "-1");
             });
+            this._onClose();
         }
     }]);
 

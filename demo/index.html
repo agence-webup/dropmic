@@ -60,7 +60,14 @@
 
     <script src="../dist/dropmic.js"></script>
     <script>
-        var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'));
+        var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'), {
+            onOpen: function() {
+                console.log("is open");
+            },
+            onClose: function() {
+                console.log("is now closed");
+            }
+        });
 
         var dropmic2 = new Dropmic(document.querySelector('[data-dropmic="2"]'));
         dropmic2.setCustomContent("Custom content");

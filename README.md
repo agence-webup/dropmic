@@ -62,8 +62,9 @@ var dropmic = new Dropmic(document.querySelector('[data-dropmic="42"]'));
 ```
 
 #### Add content
-You can create the content by yourself or use the API.
-  - Use this template (`<div class="dropmic-menu">` is needed, otherwise you can completely customize the content)
+  You can create the content by yourself or use the API (cf. below)
+
+  Use this template (`<div class="dropmic-menu">` is needed, otherwise you can completely customize his content)
 
   ```
   <div class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right" role="navigation">
@@ -81,7 +82,10 @@ You can create the content by yourself or use the API.
       </div>
   </div>
   ```
-  - You can use the API to generate content and open or close your dropdown with JS :
+
+## API
+
+You can use the API to generate content and open or close your dropdown with JS:
 
   Name                      | Parameter type(s)       | Description
   ------------------------- | ----------------------- | ----------
@@ -101,6 +105,15 @@ dropmic.addBtn('close dropdown', function() {
 });
 dropmic.addLabel('text label');
   ```
+
+## Options
+
+  Name        | Type     | Description
+------------- | -------- | -----------------------------------------
+  onOpen      | function | Callback to execute when dropmic is open
+  onClose     | function | Callback to execute when dropmic is closed
+  beforeOpen  | function | Callback to execute before opening dropmic
+  beforeClose | function | Callback to execute before closing dropmic
 
 ## Roadmap
 - [x] Add open and close public method in the API

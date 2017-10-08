@@ -6,13 +6,22 @@ class Dropmic {
         this.btn = target.querySelector('[data-dropmic-btn]');
         this.container = null;
 
-        this.options = options;
+        this.defaults = {
+            onOpen: null,
+            onClose: null,
+            beforeClose: null,
+            beforeClose: null
+        };
+
+        this.options = this.extendObject({}, this.defaults, options);
+
         this.list = null;
         this.custom = null;
 
         this.initialized = false;
 
         this.init();
+
     }
 
     init() {
@@ -109,8 +118,8 @@ class Dropmic {
         }
     }
     /**
-     * Constructors
-     */
+    * Constructors
+    */
 
     // Initialize dropdown if you want to generate it with JS
     _isInitialized() {
@@ -161,8 +170,51 @@ class Dropmic {
     }
 
     /**
-     * Public methodes to generate menu
-     */
+    * Callback methods
+    */
+
+    _onOpen() {
+        if(this.options.onOpen) {
+            this.options.onOpen();
+        }
+    }
+
+    _onClose() {
+        if(this.options.onClose) {
+            this.options.onClose();
+        }
+    }
+
+    _beforeOpen() {
+        if(this.options.beforeOpen) {
+            this.options.beforeOpen();
+        }
+    }
+
+    _beforeClose() {
+        if(this.options.beforeClose) {
+            this.options.beforeClose();
+        }
+    }
+
+    /**
+    * Helpers
+    */
+
+    extendObject() {
+        for (let i = 1; i < arguments.length; i++) {
+            for (let key in arguments[i]) {
+                if (arguments[i].hasOwnProperty(key)) {
+                    arguments[0][key] = arguments[i][key];
+                }
+            }
+        }
+        return arguments[0];
+    }
+
+    /**
+    * Public methods to generate menu
+    */
 
     // Add a link
     addLink(label, url) {
@@ -211,22 +263,26 @@ class Dropmic {
 
     // Open dropdown
     open() {
+        this._beforeOpen();
         this.target.classList.add(dropmicClassShow);
         this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "false");
         let listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
         [].forEach.call(listItems, (el) => {
             el.setAttribute("tabindex", "0");
         })
+        this._onOpen();
     }
 
     // Close dropdown
     close() {
+        this._beforeClose();
         this.target.classList.remove(dropmicClassShow);
         this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "true");
         let listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
         [].forEach.call(listItems, (el) => {
             el.setAttribute("tabindex", "-1");
         })
+        this._onClose();
     }
 }
 
