@@ -222,6 +222,7 @@
 
 .dropmic-menu__custom {
   padding: 15px 30px;
+  cursor: inherit;
 }
 
 .dropmic-menu__list,
