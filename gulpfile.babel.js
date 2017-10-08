@@ -11,17 +11,30 @@ import source from 'vinyl-source-stream';
 
 const reload = browserSync.reload;
 
+const paths = {
+    css: {
+        src: 'src/*.css',
+        dest: './dist/',
+        watch: 'src/*.css'
+    },
+    js: {
+        src: 'src/dropmic.js',
+        dest: './dist/',
+        watch: 'src/*.js'
+    }
+};
+
 /* config
 ---------------------------------------------------- */
 
 gulp.task('css', () => {
-    return gulp.src('src/*.css')
+    return gulp.src(paths.css.src)
         .pipe(autoprefixer({
             browsers: ['> 1%', 'last 3 versions'],
             cascade: false
         }))
         .pipe(cleanCSS())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(paths.css.dest))
         .pipe(reload({
             stream: true
         }));
@@ -30,25 +43,25 @@ gulp.task('css', () => {
 
 gulp.task('js', () => {
     return browserify({
-            entries: ['./src/dropmic.js'],
+            entries: [paths.js.src],
             standalone: 'Dropmic'
         })
         .transform('babelify', {
-            presets: ['es2015'],
+            presets: ['env'],
             global: true,
             ignore: /node_modules/
         })
         .bundle()
         .pipe(source('dropmic.js'))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest(paths.js.dest));
 });
 
 /**
  * Watch files for changes
  */
 gulp.task('watch', () => {
-    gulp.watch('src/*.css', ['css']);
-    gulp.watch('src/*.js', ['js']);
+    gulp.watch(paths.css.watch, ['css']);
+    gulp.watch(paths.js.watch, ['js']);
 });
 
 
