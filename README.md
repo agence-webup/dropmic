@@ -116,6 +116,19 @@ dropmic.addLabel('text label');
   beforeOpen  | function | Callback to execute before opening dropmic
   beforeClose | function | Callback to execute before closing dropmic
 
+
+  Example:
+  ```
+var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'), {
+    onOpen: function() {
+        dropmic.updateTargetBtn("Click to close");
+    },
+    onClose: function() {
+        dropmic.updateTargetBtn("Bottom right (default)");
+    }
+});
+  ```
+
 ## Roadmap
 - [x] Add open and close public method in the API
 - [x] Add top-middle and bottom-middle direction
