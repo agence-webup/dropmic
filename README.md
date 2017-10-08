@@ -1,4 +1,4 @@
-# dropmic
+![Logo dropmic](logo.png)
 
 ## Introduction
 
