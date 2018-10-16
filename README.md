@@ -53,6 +53,7 @@ Example:
 <div class="dropmic" data-dropmic="42"
 data-dropmic-direction="bottom-right">
   <button data-dropmic-btn>click me</button>
+  <div class="dropmic-menu" aria-hidden="true">quality content</div>
 </div>
 ```
 
@@ -64,7 +65,7 @@ var dropmic = new Dropmic(document.querySelector('[data-dropmic="42"]'));
 #### Add content
   You can create the content by yourself or use the API (cf. below)
 
-  Use this template (`<div class="dropmic-menu">` is needed, otherwise you can completely customize his content)
+  Use this template (`<div class="dropmic-menu" aria-hidden="true">` is needed, otherwise you can completely customize his content)
 
   ```html
   <div class="dropmic" data-dropmic="42" data-dropmic-direction="bottom-right" role="navigation">
