@@ -1,5 +1,5 @@
 const dropmicClassShow = "dropmic--show";
-class Dropmic {
+export default class Dropmic {
 
     constructor(target, options) {
         this.target = target;

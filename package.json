@@ -5,19 +5,28 @@
   "main": "dist/dropmic.js",
   "dependencies": {},
   "devDependencies": {
-    "babel-preset-env": "^1.6.0",
-    "babelify": "^7.3.0",
-    "browser-sync": "^2.18.0",
-    "browserify": "^14.4.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-clean-css": "^2.0.12",
-    "gulp-uglify": "^3.0.0",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "autoprefixer": "^9.7.3",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "clean-css-cli": "^4.3.0",
+    "postcss-cli": "^7.1.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-uglify": "^6.0.4",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "prefix": "postcss src/dropmic.css --use=autoprefixer --map=false --output=dist/dropmic.css",
+    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output dist/dropmic.min.css dist/dropmic.css",
+    "css": "npm run prefix && npm run minify",
+    "build:umd": "rollup --config build/umd.js && rollup --config build/umd.min.js",
+    "build:esm": "rollup --config build/esm.js",
+    "build": "npm run clean && npm run build:umd && npm run build:esm && npm run css"
+
   },
   "repository": {
     "type": "git",
