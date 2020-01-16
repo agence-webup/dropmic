@@ -29,7 +29,14 @@ Then dropmic have some css you will have to add (feel free to custom it for a be
 Finally just link the dropmic's code at the end of your document:
 
 ```html
+<!-- Browser build -->
 <script src="dist/dropmic.min.js"></script>
+```
+
+Or as a JS module:
+```js
+// ES6 module build
+import dropmic from 'dropmic'
 ```
 
 ### Use
@@ -130,7 +137,7 @@ var dropmic = new Dropmic(document.querySelector('[data-dropmic="1"]'), {
 });
   ```
 
-## Hack on dropmic
+## Modify dropmic
 
  1. Setup dependencies: `npm i` (or `npm ci` if you don't want to impact package-lock)
  2. Run hot-reloads server for development `npm run dev`
