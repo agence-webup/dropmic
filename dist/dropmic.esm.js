@@ -375,6 +375,5 @@ function () {
 
   return Dropmic;
 }();
-module.exports = Dropmic;
 
 export default Dropmic;

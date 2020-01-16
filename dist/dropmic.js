@@ -381,7 +381,6 @@
 
     return Dropmic;
   }();
-  module.exports = Dropmic;
 
   return Dropmic;
 

@@ -291,5 +291,3 @@ export default class Dropmic {
         this._onClose();
     }
 }
-
-module.exports = Dropmic;

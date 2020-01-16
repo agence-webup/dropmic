@@ -10,7 +10,11 @@
     "@babel/preset-env": "^7.8.3",
     "autoprefixer": "^9.7.3",
     "babel-preset-es2015-rollup": "^3.0.0",
+    "browser-sync": "^2.26.7",
     "clean-css-cli": "^4.3.0",
+    "concurrently": "^5.0.2",
+    "globby": "^11.0.0",
+    "onchange": "^6.1.0",
     "postcss-cli": "^7.1.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.29.0",
@@ -25,8 +29,10 @@
     "css": "npm run prefix && npm run minify",
     "build:umd": "rollup --config build/umd.js && rollup --config build/umd.min.js",
     "build:esm": "rollup --config build/esm.js",
-    "build": "npm run clean && npm run build:umd && npm run build:esm && npm run css"
-
+    "build": "npm run clean && npm run build:umd && npm run build:esm && npm run css",
+    "watch:js": "onchange 'src/**/*.js' -- npm run build:umd && npm run build:esm",
+    "watch:css": "onchange 'src/**/*.css' -- npm run css",
+    "dev": "npm run build & browser-sync 'demo' 'dist' -w --no-open & npm run watch:js & npm run watch:css"
   },
   "repository": {
     "type": "git",

@@ -23,13 +23,13 @@ Download                   | [Download zip](https://github.com/agence-webup/drop
 Then dropmic have some css you will have to add (feel free to custom it for a better integration in your UI):
 
 ```html
-<link rel="stylesheet" href="dist/dropmic.css">
+<link rel="stylesheet" href="dist/dropmic.min.css">
 ```
 
 Finally just link the dropmic's code at the end of your document:
 
 ```html
-<script src="dist/dropmic.js"></script>
+<script src="dist/dropmic.min.js"></script>
 ```
 
 ### Use
