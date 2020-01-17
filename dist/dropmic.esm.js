@@ -41,8 +41,6 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var dropmicClassShow = "dropmic--show";
-
 var Dropmic =
 /*#__PURE__*/
 function () {
@@ -52,6 +50,7 @@ function () {
     this.target = target;
     this.btn = target.querySelector('[data-dropmic-btn]');
     this.container = null;
+    this.showClass = "dropmic--show";
     this.defaults = _defineProperty({
       onOpen: null,
       onClose: null,
@@ -78,38 +77,48 @@ function () {
       return el;
     }
   }, {
+    key: "_stringToDom",
+    value: function _stringToDom(htmlString) {
+      var div = document.createElement('div');
+      div.innerHTML = htmlString.trim();
+      return div.firstChild;
+    }
+  }, {
     key: "_bindEvents",
     value: function _bindEvents() {
-      var self = this; // Show menu
+      var _this = this;
 
+      // Show menu
       this.btn.addEventListener("click", function (event) {
         event.preventDefault();
 
-        if (!self.target.classList.contains(dropmicClassShow)) {
-          self.open();
+        if (!_this.target.classList.contains(_this.showClass)) {
+          _this.open();
         } else {
-          self.close();
+          _this.close();
         }
       }); // Close menu when mouthclick outside menu
 
       document.addEventListener("click", function (event) {
-        if (!(self._findAncestor(event.target, 'dropmic') === self.target)) {
-          if (self.target.classList.contains(dropmicClassShow)) {
-            self.close.call(self);
+        if (!(_this._findAncestor(event.target, 'dropmic') === _this.target)) {
+          if (_this.target.classList.contains(_this.showClass)) {
+            _this.close.call(_this);
           }
         }
       }); // Close menu with escape key
 
       this.target.addEventListener("keydown", function (event) {
         if (event.keyCode === 27) {
-          self.close();
-          self.btn.focus();
+          _this.close();
+
+          _this.btn.focus();
         }
       });
       this.target.addEventListener("keydown", function (event) {
-        if (self.target.classList.contains(dropmicClassShow)) {
+        if (_this.target.classList.contains(_this.showClass)) {
           // Tab navigation
-          var elementList = self.target.querySelectorAll(".dropmic-menu__listContent");
+          var elementList = _this.target.querySelectorAll(".dropmic-menu__listContent");
+
           var elementLast = elementList.length - 1;
 
           if (event.keyCode === 9 && document.activeElement === elementList[elementLast]) {
@@ -121,7 +130,7 @@ function () {
           if (event.keyCode === 38 || event.keyCode === 40) {
             event.preventDefault();
 
-            var currentItemIndex = self._getCurrentItemIndex(elementList, document.activeElement);
+            var currentItemIndex = _this._getCurrentItemIndex(elementList, document.activeElement);
 
             if (currentItemIndex === undefined) {
               elementList[0].focus();
@@ -184,9 +193,7 @@ function () {
   }, {
     key: "_constructDropdown",
     value: function _constructDropdown() {
-      this.container = document.createElement("div");
-      this.container.classList.add("dropmic-menu");
-      this.container.setAttribute("aria-hidden", "true");
+      this.container = this._stringToDom("<div class=\"dropmic-menu\" aria-hidden=\"true\"></div>");
       this.target.appendChild(this.container);
     } // Construct list if it doesn't exist
 
@@ -194,9 +201,7 @@ function () {
     key: "_constructList",
     value: function _constructList() {
       if (this.list === null) {
-        this.list = document.createElement("ul");
-        this.list.classList.add("dropmic-menu__list");
-        this.list.setAttribute("role", "menu");
+        this.list = this._stringToDom("<ul class=\"dropmic-menu__list\" role=\"menu\"></ul>");
         this.container.appendChild(this.list);
       }
 
@@ -206,20 +211,17 @@ function () {
   }, {
     key: "_constructItem",
     value: function _constructItem(content) {
-      var listItem = document.createElement("li");
-      listItem.classList.add("dropmic-menu__listItem");
-      this.list.setAttribute("role", "menuitem");
-      listItem.appendChild(content);
-      return listItem;
+      var item = this._stringToDom("<li class=\"dropmic-menu__listItem\" role=\"menuitem\"></li>");
+
+      item.appendChild(content);
+      return item;
     } // Construct custom content
 
   }, {
     key: "_constructCustom",
     value: function _constructCustom(content) {
       if (this.custom === null) {
-        this.custom = document.createElement("div");
-        this.custom.classList.add("dropmic-menu__custom");
-        this.custom.innerHTML = content;
+        this.custom = this._stringToDom("<div class=\"dropmic-menu__custom\">".concat(content, "</div>"));
         this.container.appendChild(this.custom);
       } else {
         this.custom.innerHTML = content;
@@ -284,11 +286,7 @@ function () {
     value: function addLink(label, url) {
       this._isInitialized();
 
-      var link = document.createElement("a");
-      link.classList.add("dropmic-menu__listContent");
-      link.setAttribute("href", url);
-      link.setAttribute("tabindex", "-1");
-      link.innerHTML = label;
+      var link = this._stringToDom("<a class=\"dropmic-menu__listContent\" href=\"".concat(url, "\" tabindex=\"-1\">").concat(label, "</a>"));
 
       this._constructList().appendChild(this._constructItem(link));
     } // Add a button
@@ -303,9 +301,8 @@ function () {
         return;
       }
 
-      var btn = document.createElement("button");
-      btn.classList.add("dropmic-menu__listContent");
-      btn.setAttribute("tabindex", "-1");
+      var btn = this._stringToDom("<button class=\"dropmic-menu__listContent\" tabindex=\"-1\"></button>");
+
       btn.innerHTML = label;
 
       this._constructList().appendChild(this._constructItem(btn));
@@ -321,9 +318,7 @@ function () {
     value: function addLabel(text) {
       this._isInitialized();
 
-      var label = document.createElement("span");
-      label.classList.add("dropmic-menu__listContent");
-      label.innerHTML = text;
+      var label = this._stringToDom("<span class=\"dropmic-menu__listContent\">".concat(text, "</span>"));
 
       this._constructList().appendChild(this._constructItem(label));
     } // Add custom content (not in list), just have fun
@@ -347,7 +342,7 @@ function () {
     value: function open() {
       this._beforeOpen();
 
-      this.target.classList.add(dropmicClassShow);
+      this.target.classList.add(this.showClass);
       this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "false");
       var listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
       [].forEach.call(listItems, function (el) {
@@ -362,7 +357,7 @@ function () {
     value: function close() {
       this._beforeClose();
 
-      this.target.classList.remove(dropmicClassShow);
+      this.target.classList.remove(this.showClass);
       this.target.querySelector("[aria-hidden]").setAttribute("aria-hidden", "true");
       var listItems = this.target.querySelectorAll(".dropmic-menu__listContent");
       [].forEach.call(listItems, function (el) {
