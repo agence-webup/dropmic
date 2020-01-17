@@ -3,6 +3,8 @@
   "version": "0.3.0",
   "description": "A lightweight dropdown plugin",
   "main": "dist/dropmic.js",
+  "module": "dist/dropmic.esm.js",
+  "style": "dist/dropmic.min.css",
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.8.3",
