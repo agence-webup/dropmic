@@ -41,9 +41,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var Dropmic =
-/*#__PURE__*/
-function () {
+var Dropmic = /*#__PURE__*/function () {
   function Dropmic(target, options) {
     _classCallCheck(this, Dropmic);
 

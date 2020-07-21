@@ -3,7 +3,6 @@
 
 .dropmic {
   position: relative;
-  display: -webkit-inline-box;
   display: inline-flex;
 }
 
@@ -47,8 +46,7 @@
   right: auto;
   bottom: 0;
   left: 0;
-  -webkit-transform: translateY(calc(100% + 10px));
-          transform: translateY(calc(100% + 10px));
+  transform: translateY(calc(100% + 10px));
 }
 
 [data-dropmic-direction="bottom-left"] .dropmic-menu {
@@ -56,8 +54,7 @@
   right: 0;
   bottom: 0;
   left: auto;
-  -webkit-transform: translateY(calc(100% + 10px));
-          transform: translateY(calc(100% + 10px));
+  transform: translateY(calc(100% + 10px));
 }
 
 [data-dropmic-direction="top-left"] .dropmic-menu {
@@ -65,8 +62,7 @@
   right: 0;
   bottom: auto;
   left: auto;
-  -webkit-transform: translateY(calc(-100% - 10px));
-          transform: translateY(calc(-100% - 10px));
+  transform: translateY(calc(-100% - 10px));
 }
 
 [data-dropmic-direction="top-right"] .dropmic-menu {
@@ -74,8 +70,7 @@
   right: auto;
   bottom: auto;
   left: 0;
-  -webkit-transform: translateY(calc(-100% - 10px));
-          transform: translateY(calc(-100% - 10px));
+  transform: translateY(calc(-100% - 10px));
 }
 
 [data-dropmic-direction="bottom-middle"] .dropmic-menu {
@@ -83,8 +78,7 @@
   right: auto;
   bottom: 0;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(calc(100% + 10px));
-          transform: translateX(-50%) translateY(calc(100% + 10px));
+  transform: translateX(-50%) translateY(calc(100% + 10px));
 }
 
 [data-dropmic-direction="top-middle"] .dropmic-menu {
@@ -92,8 +86,7 @@
   right: auto;
   bottom: auto;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(calc(-100% - 10px));
-          transform: translateX(-50%) translateY(calc(-100% - 10px));
+  transform: translateX(-50%) translateY(calc(-100% - 10px));
 }
 
 /* arrow */
@@ -130,8 +123,7 @@
   top: calc(100% + 10px);
   border: 7px solid transparent;
   border-bottom-color: #d6d5d5;
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 .dropmic::after,
@@ -142,8 +134,7 @@
   top: calc(100% + 11px);
   border: 7px solid transparent;
   border-bottom-color: #fff;
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 .dropmic::before,
@@ -164,8 +155,7 @@
 [data-dropmic-direction="bottom-middle"]::after {
   right: auto;
   left: calc(50% - 3px);
-  -webkit-transform: translateX(-50%) translateY(-100%);
-          transform: translateX(-50%) translateY(-100%);
+  transform: translateX(-50%) translateY(-100%);
 }
 
 [data-dropmic-direction="top-left"]::before,
@@ -175,8 +165,7 @@
   bottom: -1px;
   border: 7px solid transparent;
   border-top-color: #d6d5d5;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
+  transform: translateY(100%);
 }
 
 [data-dropmic-direction="top-left"]::after,
@@ -186,8 +175,7 @@
   bottom: 0;
   border: 7px solid transparent;
   border-top-color: #fff;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
+  transform: translateY(100%);
 }
 
 [data-dropmic-direction="top-left"]::before,
@@ -206,8 +194,7 @@
 [data-dropmic-direction="top-middle"]::after {
   right: auto;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(100%);
-          transform: translateX(-50%) translateY(100%);
+  transform: translateX(-50%) translateY(100%);
 }
 
 /* Dropdown menu content
