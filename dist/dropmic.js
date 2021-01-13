@@ -1,6 +1,6 @@
 /*!
  * Dropmic.js v0.3.3
- * (c) 2016-2020 Agence Webup
+ * (c) 2016-2021 Agence Webup
  * Released under the MIT License.
  */
 
