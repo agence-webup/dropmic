@@ -1,4 +1,4 @@
-![Logo dropmic](logo.png)
+![Logo dropmic](logo.svg)
 
 ## Introduction
 
